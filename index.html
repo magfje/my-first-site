@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ME</title>
+
+    <style>
+        .bg {
+            background-color: white;
+            color: black;
+
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: 400px 400px;
+        }
+
+        .card {
+            width: 300px;
+            border-radius: 25px;
+            padding: 15px;
+            margin: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+
+        }
+
+        img {
+            width: 300px;
+            height: auto;
+        }
+
+        .header {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+
+        .button {
+            background-color: rgb(68, 224, 89);
+            /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            font-size: 16px;
+            transition-duration: 0.4s;
+        }
+
+        .button:hover {
+            background-color: beige;
+            /* Green */
+            color: black;
+
+        }
+
+        .counterBtn {
+            background-color: rgb(68, 224, 89);
+            border: none;
+            padding: 15px;
+            width: 100px;
+            text-align: center;
+            font-size: 24px;
+            transition-duration: 0.4s;
+            border-radius: 15px;
+
+        }
+
+        .counterBtn:hover {
+            background-color: beige;
+        }
+
+        .nCount {
+            padding: 15px;
+
+        }
+
+        .experiments {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            align-items: center;
+            font-size: 50px;
+        }
+
+        .numCard {
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
+</head>
+
+<body id='bg'>
+    <div class="header">
+        <h1>
+            Magnus Fjelldal
+        </h1>
+    </div>
+    <div class="cards">
+        <div class="card">
+            <h2>
+                Om meg
+            </h2>
+            <p>Jeg kommer fra Bodø, men bor i Trondheim.</p>
+            <h2>
+                Interesser
+            </h2>
+            <ul>
+                <li>Data</li>
+                <li>Dataspill</li>
+                <ul>
+                    <li>Skytespill</li>
+                    <li>MMO</li>
+                </ul>
+                <li>Musikk</li>
+            </ul>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <button class="button" id="darkmode" onclick="changeColor()">Turn lights off</button>
+
+            <button class="button" onclick="setTheme('blue', 'red')">blue</button>
+            <button class="button" onclick="setTheme('red', 'blue')">red</button>
+            <button class="button" onclick="setTheme('green', 'orange')">green</button>
+
+            <button class="button" id="btRndColor">random</button> <!-- bruker addEventListener -->
+
+            <a href="Slot/slot.html">Slot Thingy</a>
+        </div>
+        <div class="card">
+            <img src="me.webp" />
+        </div>
+    </div>
+    <h2>Random</h2>
+    <div class="experiments">
+        <div class="numCard">
+            <button class="counterBtn" onclick="countDown()">👇</button>
+            <div id="nCount" class="nCount">0</div>
+            <button class="counterBtn" onclick="countUp()">☝️</button>
+        </div>
+
+        <div id="someButton">
+            <button onclick="someFunction()">a</button>
+        </div>
+    </div>
+
+    <script>
+
+        //switcher mellom lys og mørk
+        let color = true
+        function changeColor() {
+            if (color === true) {
+                document.getElementById('bg').style.backgroundColor = "black";
+                document.getElementById('bg').style.color = "white";
+                color = false;
+                document.getElementById('darkmode').innerHTML = "Turn lights on";
+            } else {
+                document.getElementById('bg').style.backgroundColor = "white";
+                document.getElementById('bg').style.color = "black";
+                color = true;
+                document.getElementById('darkmode').innerHTML = "Turn lights off";
+            }
+
+        }
+
+
+
+        //Bruker 2 strings som input
+        function setTheme(bg, fg) {
+            document.getElementById('bg').style.backgroundColor = bg;
+            document.getElementById('bg').style.color = fg;
+        }
+        //random color gen
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF'.split('');
+            var color = '#';
+            var color2 = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.round(Math.random() * 15)];
+                color2 += letters[Math.round(Math.random() * 15)];
+            }
+
+            document.getElementById('bg').style.backgroundColor = color;
+            document.getElementById('bg').style.color = color2;
+        }
+
+        btRndColor.addEventListener("click", getRandomColor);
+
+        //counter
+        let number = 0
+        const x = document.getElementById('nCount')
+        function countUp() {
+            number = Number(number) + 1;
+            x.innerHTML = number;
+        }
+        function countDown() {
+            number = Number(number) - 1;
+            x.innerHTML = number;
+        }
+
+    </script>
+</body>
+
+</html>
